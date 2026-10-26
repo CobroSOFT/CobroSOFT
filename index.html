@@ -1,327 +1,578 @@
-
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cobrosoft - Sistema de Ventas y Gestión</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CobroSOFT | Sistema de gestión comercial</title>
+<meta name="description" content="CobroSOFT: sistema de ventas y control interno para comercios. Administrá ventas, caja, inventario y gastos desde un solo lugar.">
 
-        body {
-            background-color: #030712;
-            color: #f3f4f6;
-            line-height: 1.7;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 50px;
-            background-color: #0f172a;
-            border-bottom: 1px solid #1e293b;
-        }
+<style>
+:root {
+    --fondo: #07111f;
+    --panel: #0d1b2d;
+    --panel2: #12243a;
+    --azul: #1685ff;
+    --celeste: #38bdf8;
+    --texto: #f4f8ff;
+    --secundario: #b5c4d8;
+    --borde: #233951;
+}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #38bdf8;
-            letter-spacing: 1px;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .hero {
-            text-align: center;
-            padding: 90px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        .hero h1 {
-            font-size: 3.2rem;
-            margin-bottom: 25px;
-            color: #ffffff;
-            font-weight: 800;
-        }
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.7;
+}
 
-        .hero h1 span {
-            color: #38bdf8;
-        }
+header {
+    padding: 20px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #091525;
+    border-bottom: 1px solid var(--borde);
+}
 
-        .hero p {
-            font-size: 1.25rem;
-            color: #94a3b8;
-            margin-bottom: 30px;
-        }
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: white;
+}
 
-        .btn-download {
-            background-color: #2563eb;
-            color: #ffffff;
-            padding: 16px 40px;
-            font-size: 1.15rem;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-        }
+.logo span {
+    color: var(--celeste);
+}
 
-        .btn-download:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
-        }
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
 
-        .download-info {
-            margin-top: 25px;
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: left;
-            color: #94a3b8;
-            font-size: 1rem;
-            max-width: 750px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
+.boton {
+    display: inline-block;
+    padding: 14px 25px;
+    border-radius: 9px;
+    background: var(--azul);
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    border: 1px solid #3697ff;
+    transition: 0.2s;
+}
 
-        .download-info h3 {
-            color: #ffffff;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 8px;
-        }
+.boton:hover {
+    background: #0869d2;
+    transform: translateY(-2px);
+}
 
-        .download-info ol {
-            padding-left: 20px;
-            margin-bottom: 20px;
-        }
+.hero {
+    max-width: 1100px;
+    margin: auto;
+    padding: 65px 24px 75px;
+    text-align: center;
+}
 
-        .download-info li {
-            margin-bottom: 10px;
-            color: #cbd5e1;
-        }
+.etiqueta {
+    display: inline-block;
+    padding: 7px 14px;
+    border: 1px solid #24517b;
+    border-radius: 30px;
+    background: #102640;
+    color: var(--celeste);
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
 
-        .price-tag {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border: 1px solid #38bdf8;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            color: #38bdf8;
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
+h1 {
+    font-size: clamp(32px, 5vw, 54px);
+    line-height: 1.17;
+    letter-spacing: -1.8px;
+    margin-bottom: 28px;
+}
 
-        .explanation-section {
-            padding: 80px 20px;
-            background-color: #0f172a;
-            border-top: 1px solid #1e293b;
-            border-bottom: 1px solid #1e293b;
-        }
+h1 span {
+    color: var(--celeste);
+}
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+/* CAPTURA PRINCIPAL: colocar la imagen en capturas/pantalla-principal.png */
+.captura-principal {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto 30px;
+    padding: 12px;
+    border: 1px solid #2d5275;
+    border-radius: 15px;
+    background: var(--panel);
+    box-shadow: 0 20px 65px rgba(0, 0, 0, 0.35);
+}
 
-        .section-title {
-            text-align: center;
-            font-size: 2.3rem;
-            margin-bottom: 50px;
-            color: #ffffff;
-            font-weight: 700;
-        }
+.captura-principal img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
 
-        .step-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+.sin-imagen {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    color: var(--secundario);
+    background: #0a1728;
+    border: 1px dashed #3c6389;
+    border-radius: 8px;
+}
 
-        .step-card {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            padding: 35px 30px;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
+.sin-imagen strong {
+    color: var(--celeste);
+    font-size: 22px;
+    margin-bottom: 8px;
+}
 
-        .step-card:hover {
-            transform: translateY(-5px);
-        }
+.descripcion {
+    max-width: 760px;
+    margin: 0 auto 27px;
+    color: var(--secundario);
+    font-size: 18px;
+}
 
-        .step-number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #38bdf8;
-            margin-bottom: 15px;
-        }
+.botones {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin: 25px 0;
+}
 
-        .step-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: #ffffff;
-        }
+.boton-secundario {
+    display: inline-block;
+    padding: 14px 25px;
+    border-radius: 9px;
+    border: 1px solid #42617f;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
 
-        .step-card p {
-            color: #94a3b8;
-            font-size: 1rem;
-        }
+.precio {
+    max-width: 720px;
+    margin: 35px auto 0;
+    padding: 25px;
+    background: linear-gradient(135deg, #10243b, #0c1a2b);
+    border: 1px solid #2876b5;
+    border-radius: 14px;
+}
 
-        .screenshots-section {
-            padding: 60px 20px;
-            max-width: 860px;
-            margin: 0 auto;
-            text-align: center;
-        }
+.precio .importe {
+    display: block;
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--celeste);
+    margin: 5px 0;
+}
 
-        .gallery-grid {
-            display: flex;
-            flex-direction: column;
-        }
+.precio p {
+    color: var(--secundario);
+}
 
-        .screenshot-item {
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            margin-bottom: 1cm;
-        }
+.seccion {
+    padding: 75px 24px;
+    border-top: 1px solid var(--borde);
+}
 
-        .screenshot-title {
-            color: #ffffff;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-align: left;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 6px;
-        }
+.seccion-alterna {
+    background: #091625;
+}
 
-        .screenshot-img {
-            width: 100%;
-            max-width: 780px;
-            height: auto;
-            border-radius: 6px;
-            border: 1px solid #334155;
-            display: block;
-            margin: 0 auto;
-        }
+.contenedor {
+    max-width: 1100px;
+    margin: auto;
+}
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid #1e293b;
-            color: #64748b;
-            font-size: 0.95rem;
-            background-color: #0f172a;
-        }
-    </style>
+.titulo-seccion {
+    text-align: center;
+    font-size: clamp(27px, 4vw, 37px);
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.subtitulo {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+    color: var(--secundario);
+}
+
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta {
+    padding: 27px;
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 13px;
+}
+
+.icono {
+    width: 43px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #12375a;
+    color: var(--celeste);
+    font-size: 23px;
+    font-weight: 800;
+    margin-bottom: 17px;
+}
+
+.tarjeta h3 {
+    margin-bottom: 10px;
+    font-size: 19px;
+}
+
+.tarjeta p {
+    color: var(--secundario);
+    font-size: 15px;
+}
+
+.pasos {
+    max-width: 800px;
+    margin: auto;
+    display: grid;
+    gap: 17px;
+}
+
+.paso {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 22px;
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+}
+
+.numero {
+    min-width: 39px;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--azul);
+    color: white;
+    font-weight: 800;
+    border-radius: 9px;
+}
+
+.paso p {
+    color: var(--secundario);
+    margin-top: 4px;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+}
+
+.foto {
+    padding: 13px;
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+}
+
+.foto h3 {
+    font-size: 16px;
+    margin: 5px 3px 12px;
+}
+
+.foto img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 7px;
+    border: 1px solid var(--borde);
+}
+
+.final {
+    text-align: center;
+    padding: 70px 24px;
+    background: linear-gradient(135deg, #0d2340, #07111f);
+    border-top: 1px solid var(--borde);
+}
+
+.final p {
+    color: var(--secundario);
+    margin: 15px auto 25px;
+}
+
+footer {
+    padding: 25px 15px;
+    text-align: center;
+    background: #050d18;
+    color: #8fa3bb;
+    border-top: 1px solid var(--borde);
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 16px 5%;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .hero {
+        padding: 45px 16px 55px;
+    }
+
+    .descripcion {
+        font-size: 16px;
+    }
+
+    .seccion {
+        padding: 55px 16px;
+    }
+
+    .sin-imagen {
+        min-height: 200px;
+    }
+
+    .precio .importe {
+        font-size: 29px;
+    }
+}
+</style>
+
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">Cobrosoft</div>
-        <div>
-            <a href="cobrosoftV1.0.zip" style="color: #cbd5e1; text-decoration: none; font-weight: 600;">Descargar</a>
-        </div>
-    </header>
+<header>
+    <div class="logo">Cobro<span>SOFT</span></div>
+    <a href="#descargar">Descargar</a>
+</header>
 
+<main>
     <section class="hero">
-        <h1>El sistema definitivo para la gestión de tu comercio es <span>Cobrosoft</span></h1>
-        <p>Controlá tu caja, emití tickets al instante y automatizá el flujo de cobros diarios con máxima velocidad y precisión.</p>
-        
-        <a href="cobrosoftV1.0.zip" class="btn-download">DESCARGAR SOFT</a>
-        
-        <div class="download-info">
-            <h3>Pasos para la activación:</h3>
-            <ol>
-                <li>Descargá e instalá el programa en tu computadora.</li>
-                <li>Envianos el código que genera el sistema a nuestro WhatsApp junto al comprobante.</li>
-                <li>Te mandamos la licencia definitiva por correo o WhatsApp una vez que impacta la transferencia a nuestro CBU.</li>
-            </ol>
-            <div class="price-tag">
-                Precio especial lanzamiento: $69.000 con 15mil productos precargados! (¡El software es tuyo para siempre!)
+        <div class="etiqueta">CONTROL COMERCIAL PARA TU NEGOCIO</div>
+
+    <h1>Conocé CobroSOFT y <span>organizá tu comercio</span></h1>
+
+    <div class="captura-principal">
+        <img
+            src="capturas/pantalla-principal.png"
+            alt="Pantalla principal de CobroSOFT"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div class="sin-imagen" style="display:none">
+            <strong>Captura principal de CobroSOFT</strong>
+            <span>Colocá tu imagen en capturas/pantalla-principal.png</span>
+        </div>
+    </div>
+
+    <p class="descripcion">
+        Administrá las ventas, controlá la caja, organizá tu inventario
+        y consultá los movimientos de tu comercio desde un mismo sistema.
+        CobroSOFT está pensado para el control interno de tu negocio.
+    </p>
+
+    <div class="botones" id="descargar">
+        <a class="boton" href="cobrosoftV1.0.zip">DESCARGAR COBROSOFT</a>
+        <a class="boton-secundario" href="#funciones">Conocer las funciones</a>
+    </div>
+
+    <div class="precio">
+        <p>Precio especial de lanzamiento</p>
+        <span class="importe">$69.000</span>
+        <p>Incluye una base de hasta 15.000 productos precargados.</p>
+    </div>
+</section>
+
+<section class="seccion seccion-alterna" id="funciones">
+    <div class="contenedor">
+        <h2 class="titulo-seccion">Todo más organizado en un solo lugar</h2>
+        <p class="subtitulo">
+            Herramientas para llevar un mejor control de las operaciones
+            diarias de tu comercio.
+        </p>
+
+        <div class="tarjetas">
+            <article class="tarjeta">
+                <div class="icono">01</div>
+                <h3>Ventas y cobros</h3>
+                <p>Registrá los artículos vendidos, consultá los importes
+                y organizá los medios de pago de cada operación.</p>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">02</div>
+                <h3>Inventario</h3>
+                <p>Administrá tus productos, precios y cantidades para
+                mantener la información de tu mercadería organizada.</p>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">03</div>
+                <h3>Control de caja</h3>
+                <p>Consultá los ingresos, los gastos y los resultados
+                registrados durante cada jornada de trabajo.</p>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">04</div>
+                <h3>Clientes y proveedores</h3>
+                <p>Organizá los datos y los movimientos comerciales
+                registrados con clientes y proveedores.</p>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">05</div>
+                <h3>Tickets e historial</h3>
+                <p>Consultá las operaciones registradas y accedé
+                al historial de tickets del sistema.</p>
+            </article>
+
+            <article class="tarjeta">
+                <div class="icono">06</div>
+                <h3>Reportes y gastos</h3>
+                <p>Revisá los movimientos y los gastos para facilitar
+                el seguimiento interno de tu actividad comercial.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="seccion">
+    <div class="contenedor">
+        <h2 class="titulo-seccion">Empezá a trabajar con CobroSOFT</h2>
+        <p class="subtitulo">Un proceso de instalación y activación sencillo.</p>
+
+        <div class="pasos">
+            <div class="paso">
+                <div class="numero">1</div>
+                <div>
+                    <h3>Descargá el programa</h3>
+                    <p>Descargá el archivo de instalación disponible en esta página.</p>
+                </div>
+            </div>
+
+            <div class="paso">
+                <div class="numero">2</div>
+                <div>
+                    <h3>Solicitá la activación</h3>
+                    <p>Si el sistema solicita una licencia, seguí las instrucciones
+                    de activación que recibas al adquirirlo.</p>
+                </div>
+            </div>
+
+            <div class="paso">
+                <div class="numero">3</div>
+                <div>
+                    <h3>Organizá tu comercio</h3>
+                    <p>Comenzá a registrar tus operaciones y utilizá las funciones
+                    disponibles para el control interno de tu negocio.</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="explanation-section">
-        <div class="container">
-            <h2 class="section-title">¿Cómo funciona Cobrosoft?</h2>
-            <div class="step-grid">
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <h3>Carga de Artículos</h3>
-                    <p>Registrás tus productos o servicios de forma rápida, asignando precios y categorías para tener todo ordenado en la base de datos.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <h3>Operación en Caja</h3>
-                    <p>Durante la atención al cliente, el sistema procesa los ítems, calcula subtotales y aplica los medios de pago correspondientes al instante.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <h3>Arqueo y Cierre</h3>
-                    <p>Al finalizar el turno, el software genera automáticamente el resumen de caja y los cierres de operaciones para evitar diferencias de dinero.</p>
-                </div>
-            </div>
+<section class="seccion seccion-alterna">
+    <div class="contenedor">
+        <h2 class="titulo-seccion">Conocé el sistema por dentro</h2>
+        <p class="subtitulo">
+            Estas secciones están preparadas para mostrar capturas reales
+            de CobroSOFT.
+        </p>
+
+        <div class="galeria">
+            <article class="foto">
+                <h3>1. Acceso al sistema</h3>
+                <img src="foto1.jpg" alt="Ingreso a CobroSOFT">
+            </article>
+
+            <article class="foto">
+                <h3>2. Pantalla de ventas</h3>
+                <img src="foto2.jpg" alt="Panel de ventas de CobroSOFT">
+            </article>
+
+            <article class="foto">
+                <h3>3. Inventario de productos</h3>
+                <img src="foto3.jpg" alt="Inventario de CobroSOFT">
+            </article>
+
+            <article class="foto">
+                <h3>4. Historial de tickets</h3>
+                <img src="foto4.jpg" alt="Historial de tickets">
+            </article>
+
+            <article class="foto">
+                <h3>5. Ranking de productos</h3>
+                <img src="foto5.jpg" alt="Ranking de productos vendidos">
+            </article>
+
+            <article class="foto">
+                <h3>6. Arqueo y cierre de caja</h3>
+                <img src="foto6.jpg" alt="Arqueo y cierre de caja">
+            </article>
+
+            <article class="foto">
+                <h3>7. Reportes</h3>
+                <img src="foto7.jpg" alt="Reportes del sistema">
+            </article>
+
+            <article class="foto">
+                <h3>8. Gestión de gastos</h3>
+                <img src="foto8.jpg" alt="Gestión de gastos">
+            </article>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="screenshots-section">
-        <h2 class="section-title">Vista Previa del Software</h2>
-        <div class="gallery-grid">
-            <div class="screenshot-item">
-                <div class="screenshot-title">1. Ingreso como administrador, encargado o empleado</div>
-                <img src="foto1.jpg" alt="Ingreso" class="screenshot-img">
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-title">2. Panel de Ventas</div>
-                <img src="foto2.jpg" alt="Panel de Ventas" class="screenshot-img">
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-title">3. Ingresos de productos</div>
-                <img src="foto3.jpg" alt="Ingresos de productos" class="screenshot-img">
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-title">4. Historial de Tickets</div>
-                <img src="foto4.jpg" alt="Historial de Tickets" class="screenshot-img">
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-title">5. Ranking de los top 20 mas vendidos</div>
-                <img src="foto5.jpg" alt="Ranking top 20" class="screenshot-img">
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-title">6. Arqueo de Caja y Cierre Z</div>
-                <img src="foto6.jpg" alt="Arqueo de Caja y Cierre Z" class="screenshot-img">
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-title">7. Reportes</div>
-                <img src="foto7.jpg" alt="Reportes" class="screenshot-img">
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-title">8. Gestión de gastos</div>
-                <img src="foto8.jpg" alt="Gestión de gastos" class="screenshot-img">
-            </div>
-        </div>
-    </section>
+<section class="final">
+    <h2 class="titulo-seccion">Dale a tu comercio una mejor organización</h2>
+    <p>Conocé CobroSOFT y sus herramientas de control comercial.</p>
+    <a class="boton" href="cobrosoftV1.0.zip">DESCARGAR COBROSOFT</a>
+</section>
 
-    <footer>
-        Cobrosoft &copy; 2026 - Todos los derechos reservados.
-    </footer>
+</main>
+
+<footer>
+    CobroSOFT © 2026 · Sistema de control comercial interno
+</footer>
 
 </body>
 </html>
